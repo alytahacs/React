@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import  Dynamic from './Components/DynamicTxt'
+import  Result from './Components/ResultTxt'
+class App extends React.Component{
+    state=({
+        Mydata:'',
+        ShowResult:false
+      
+});
+    changeHandler=(event, data)=>{
+      
+     this.setState({Mydata:event.target.value}) ;
+     
+    }
+    clickMeHandler=()=>{
+        this.setState({ShowResult:!this.state.ShowResult})
+    }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+   
+render(){
+    let MyComponent ='';
+    let characters=this.state.Mydata.split('').map((char)=>{
+        return(
+       <Result SendData={char}/>
+    )})
+    if(this.state.ShowResult){
+        MyComponent=(
+            <div>
+            <Dynamic Event={(e)=>this.changeHandler(e,'ali')} />
+           {characters}
+            
+            </div>)
+
+           
+        
+        
+    }
+
+return (
+    <div>
+    <button onClick={this.clickMeHandler}>ClickMe</button>
+    {MyComponent}
     </div>
-  );
+)
+};
 }
-
 export default App;
