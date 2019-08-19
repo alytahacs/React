@@ -4,9 +4,14 @@ const Result=(props)=>{
     if(props.SendData.length>=5){
         result='your input is enough long'
     }
+    let style={display:"inline-Block", width:"10%", border:"1px solid #eee"}
     return(
-        <div>
-            <p> {result} {props.SendData}</p>
+        <div 
+       
+        style={style} 
+        id={props.DivId}>
+
+            <button  onClick={props.Click}> {props.SendData} </button>
         </div>
     )
 }
